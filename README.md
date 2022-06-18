@@ -45,7 +45,7 @@ Users should be able to:
 
 ### What I learned
 
-```
+
 The funtion below chnages where in the audio your are depending on where you clicked, and also updates the progress bar accordingly.
 ```
   const setProgressBar = (e) => {
