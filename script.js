@@ -2,6 +2,8 @@ const play = document.getElementById('play');
 const previous = document.getElementById('prev');
 const next = document.getElementById('next');
 const audio = document.querySelector('audio');
+const progressContainer = document.getElementById('progress-container');
+const progress = document.getElementById('progress')
 const title = document.getElementById('title');
 const reciter = document.getElementById('reciter');
 const img = document.querySelector('img');
@@ -75,10 +77,6 @@ const prevAudio = () => {
   playAudio();
 }
 
-// const durationPlayed = () => {
-//   audio.duration();
-// }
-
 // pause and play button
 play.addEventListener('click', () => !isPlaying ? playAudio() : pauseAudio());
 
@@ -90,16 +88,20 @@ const loadSurah = (surah) => {
   img.src = `img/${surah.img}.jpg`
 }
 
-// current audio
-
-
-
-{
-  console.log(surahIndex);
-}
 // On Load
 loadSurah(SURAHS[surahIndex]);
+
+// update Progress bar
+const updateProgressBar = (e) => {
+  if(isPlaying) {
+    const { duration, currentTime } = e.srcElement;
+    // update progress bar 
+    const progressPercent = (currentTime / duration) * 100;
+    progress.style.width = `${progressPercent}%`
+  }
+}
 
 // event listeners 
 prev.addEventListener('click', prevAudio);
 next.addEventListener('click', nextAudio);
+audio.addEventListener('timeupdate', updateProgressBar)
