@@ -63,4 +63,5 @@ Going forward I will make this website better by adding a volume controller.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com)](https://www.w3schools.com/jsref/dom_obj_audio.asp)- This helped me for learning audio objects in Javascipt. I really liked this pattern and will use it going forward.
+- [W3S schools](https://www.w3schools.com/jsref/dom_obj_audio.asp)
+- This helped me for learning audio objects in Javascipt. I really liked this pattern and will use it going forward.
