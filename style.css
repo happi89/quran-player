@@ -138,4 +138,8 @@ top: 3px;
     top: -10px;
     left: 100px;
   }
+
+  .duration-wrapper {
+    width: 312px;
+  }
 }

@@ -104,6 +104,7 @@ const updateProgressBar = (e) => {
     const durationMinutes = Math.floor(duration / 60);
     let durationSeconds = Math.floor(duration % 60);
     // adds 0 infront of numbers less then 10 ie 5 -> 05
+    durationSeconds < 10
     if(durationSeconds < 10) {
       durationSeconds = `0${durationSeconds}`
     }
