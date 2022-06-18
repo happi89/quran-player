@@ -4,6 +4,8 @@ const next = document.getElementById('next');
 const audio = document.querySelector('audio');
 const progressContainer = document.getElementById('progress-container');
 const progress = document.getElementById('progress')
+const durationEl = document.getElementById('duration');
+const currentEl = document.getElementById('current-time');
 const title = document.getElementById('title');
 const reciter = document.getElementById('reciter');
 const img = document.querySelector('img');
@@ -11,7 +13,8 @@ const time = document.getElementById('current-time');
 const duration = document.getElementById('duration');
 
 let isPlaying = false;
-let surahIndex = 1;
+let surahIndex = 0;
+durationEl.textContent = '0:37';
 
 const SURAHS = [
   {
@@ -62,7 +65,6 @@ const nextAudio = () => {
   if(surahIndex === SURAHS.length) {
     surahIndex = 0;
   }
-  
   loadSurah(SURAHS[surahIndex]);
   playAudio();
 }
@@ -98,9 +100,29 @@ const updateProgressBar = (e) => {
     // update progress bar 
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`
+    // get the duration in correct format
+    const durationMinutes = Math.floor(duration / 60);
+    let durationSeconds = Math.floor(duration % 60);
+    // adds 0 infront of numbers less then 10 ie 5 -> 05
+    if(durationSeconds < 10) {
+      durationSeconds = `0${durationSeconds}`
+    }
+    // adds delay so element doesnt display NaN
+    if (durationSeconds) {
+      durationEl.textContent = `${durationMinutes}:${durationSeconds}`;
+    }
+
+    // updates current time
+    const currentTimeMinutes = Math.floor(currentTime / 60);
+    let currentTimeSeconds = Math.floor(currentTime % 60);
+    // adds 0 infront of numbers less then 10 ie 5 -> 05
+    if(currentTimeSeconds < 10) {
+      currentTimeSeconds = `0${currentTimeSeconds}`;
+    }
+    currentEl.textContent = `${currentTimeMinutes}:${currentTimeSeconds}`;
+    console.log(currentTimeMinutes);
   }
 }
-
 // event listeners 
 prev.addEventListener('click', prevAudio);
 next.addEventListener('click', nextAudio);
