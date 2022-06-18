@@ -120,10 +120,21 @@ const updateProgressBar = (e) => {
       currentTimeSeconds = `0${currentTimeSeconds}`;
     }
     currentEl.textContent = `${currentTimeMinutes}:${currentTimeSeconds}`;
-    console.log(currentTimeMinutes);
   }
 }
+
+// set progress bar
+const setProgressBar = (e) => {
+  const width = e.srcElement.clientWidth;
+  const clickX = e.offsetX;
+  const { duration } = audio;
+  // console.log((clickX / width) * duration);
+  audio.currentTime = (clickX / width) * duration;
+}
+
 // event listeners 
 prev.addEventListener('click', prevAudio);
 next.addEventListener('click', nextAudio);
 audio.addEventListener('timeupdate', updateProgressBar)
+progressContainer.addEventListener('click', setProgressBar)
+audio.addEventListener('ended', nextAudio);
